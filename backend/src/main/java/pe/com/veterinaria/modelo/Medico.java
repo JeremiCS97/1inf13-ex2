@@ -24,6 +24,6 @@ public class Medico {
     private String especialidad;
 
     @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonManagedReference("medico-cita")
     private List<CitaMedica> citasMedicas;
 }

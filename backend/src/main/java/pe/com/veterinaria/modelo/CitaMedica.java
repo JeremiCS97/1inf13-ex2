@@ -1,6 +1,7 @@
 package pe.com.veterinaria.modelo;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,12 +17,12 @@ public class CitaMedica {
 
     @ManyToOne
     @JoinColumn(name = "idPaciente")
-    @JsonManagedReference
+    @JsonBackReference("paciente-cita")
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "idMedico")
-    @JsonManagedReference
+    @JsonBackReference("medico-cita")
     private Medico medico;
 
     @Column(name = "motivo")
