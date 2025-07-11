@@ -38,7 +38,7 @@ jobs:
         working-directory: backend
 
       - name: Construir la imagen docker
-        run: docker build -t jeress .
+        run: docker build -t veterinaria .
         working-directory: backend
 
       - name: Iniciar Sesión en ECR
@@ -47,18 +47,30 @@ jobs:
 
       - name: Crear el reposiorio ECR si no existe
         run: |
-          aws ecr describe-repositories --repository-names jeress || aws ecr create-repository --repository-name jeress
+          aws ecr describe-repositories --repository-names veterinaria || aws ecr create-repository --repository-name veterinaria
 
       - name: Push Docker image
         run: |
-          docker tag jeress ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/jeress
-          docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/jeress
+          docker tag veterinaria ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/veterinaria
+          docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/veterinaria
       
       - name: Build Lambda Functions
         run: |
-          cd serverless/jeress/packages/funciones/crear-docventa
+          # Construir función crear-cita
+          cd serverless/veterinaria/packages/funciones/crear-cita
           npm ci
           npm run build
+          
+          # Construir función procesar-pacientes
+          cd ../procesar-pacientes
+          npm ci
+          npm run build
+
+      - name: Verificar build de Lambda Functions
+        run: |
+          # Verificar que los archivos JavaScript se generaron correctamente
+          ls -la serverless/veterinaria/packages/funciones/crear-cita/build/
+          ls -la serverless/veterinaria/packages/funciones/procesar-pacientes/build/
 
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v3
@@ -69,11 +81,30 @@ jobs:
         run: terraform init -backend-config "bucket=${{ vars.BUCKET }}" -backend-config "dynamodb_table=${{ vars.LOCKS }}"
         working-directory: iac
 
+      - name: Validar Terraform
+        run: terraform validate
+        working-directory: iac
+
+      - name: Planificar Terraform
+        run: |
+          terraform plan \
+            -var="id_cuenta_aws=${{ vars.AWS_ACCOUNT_ID }}" \
+            -var="rol_lab_arn=${{ vars.ROL_LAB_ARN }}" \
+            -var="url_base_servicio=${{ vars.URL_BASE_SERVICIO }}" \
+            -var="nombre_cluster_ecs=${{ vars.NOMBRE_CLUSTER }}" \
+            -var="familia_tarea_ecs=${{ vars.FAMILIA_TAREA_ECS }}" \
+            -var="nombre_repo_ecr=${{ vars.NOMBRE_REPO_ECR }}" \
+            -var="servidor_base_datos=${{ vars.SERVIDOR_BASE_DATOS }}" \
+            -var="usuario_base_datos=${{ vars.USUARIO_BASE_DATOS }}" \
+            -var="contrasenha_base_datos=${{ secrets.CONTRASENHA_BASE_DATOS }}" \
+            -var="nombre_servicio_ecs=${{ vars.NOMBRE_SERVICIO }}"
+        working-directory: iac
+
       - name: Aplicar Terraform
         run: |
           terraform apply \
             -var="id_cuenta_aws=${{ vars.AWS_ACCOUNT_ID }}" \
-            -var="rol_lab_arn=arn:aws:iam::267352384382:role/LabRole" \
+            -var="rol_lab_arn=${{ vars.ROL_LAB_ARN }}" \
             -var="url_base_servicio=${{ vars.URL_BASE_SERVICIO }}" \
             -var="nombre_cluster_ecs=${{ vars.NOMBRE_CLUSTER }}" \
             -var="familia_tarea_ecs=${{ vars.FAMILIA_TAREA_ECS }}" \
@@ -89,17 +120,18 @@ jobs:
         run: |
           aws ecs update-service --cluster ${{ vars.NOMBRE_CLUSTER }} --service ${{ vars.NOMBRE_SERVICIO }} --force-new-deployment
 
-      - name: Instalar dependencias Frontend
-        run: npm install
-        working-directory: frontend
+      # Los siguientes pasos están comentados porque no existe directorio frontend en este proyecto
+      # - name: Instalar dependencias Frontend
+      #   run: npm install
+      #   working-directory: frontend
 
-      - name: Compilar Frontend
-        run: npm run build
-        working-directory: frontend
+      # - name: Compilar Frontend
+      #   run: npm run build
+      #   working-directory: frontend
 
-      - name: Instalar Vercel CLI
-        run: npm install -g vercel
+      # - name: Instalar Vercel CLI
+      #   run: npm install -g vercel
 
-      - name: Desplegar en Vercel
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes
-        working-directory: frontend
+      # - name: Desplegar en Vercel
+      #   run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes
+      #   working-directory: frontend
