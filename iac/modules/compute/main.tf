@@ -1,8 +1,8 @@
-resource "aws_ecs_cluster" "cluster_jeress_servicios" {
+resource "aws_ecs_cluster" "cluster_veterinaria_servicios" {
     name = var.nombre_cluster
 }
 
-resource "aws_ecs_task_definition" "definicion_tarea_jeress" {
+resource "aws_ecs_task_definition" "veterinaria_tarea" {
     family = var.familia_tarea
     requires_compatibilities = ["FARGATE"]
     network_mode = "awsvpc"
@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "definicion_tarea_jeress" {
     task_role_arn = var.rol_lab_arn
 
     container_definitions = jsonencode([{
-        name = "jeress",
+        name = "veterinaria",
         image = "${var.id_cuenta_aws}.dkr.ecr.${var.region_aws}.amazonaws.com/${var.nombre_repo_ecr}:latest",
         essential = true,
         portMappings = [
@@ -70,16 +70,16 @@ data "aws_security_group" "grupo_seguridad_por_defecto" {
     vpc_id = data.aws_vpc.vpc_por_defecto.id
 }
 
-resource "aws_ecs_service" "servicio_jeress" {
+resource "aws_ecs_service" "veterinaria_servicio" {
     name            = var.nombre_servicio_ecs
-    cluster         = aws_ecs_cluster.cluster_jeress_servicios.id
-    task_definition = aws_ecs_task_definition.definicion_tarea_jeress.arn
+    cluster         = aws_ecs_cluster.cluster_veterinaria_servicios.id
+    task_definition = aws_ecs_task_definition.veterinaria_tarea.arn
     desired_count   = 1
     launch_type     = "FARGATE"
 
     load_balancer {
-        target_group_arn = aws_lb_target_group.tg_jeress.arn
-        container_name   = "jeress"
+        target_group_arn = aws_lb_target_group.veterinaria_target_group.arn
+        container_name   = "veterinaria"
         container_port   = 8080
     }
 
@@ -94,14 +94,14 @@ resource "aws_ecs_service" "servicio_jeress" {
     }
 
     depends_on = [
-        aws_ecs_task_definition.definicion_tarea_jeress,
+        aws_ecs_task_definition.veterinaria_tarea,
         aws_lb_listener.http_listener
     ]
 }
 
 resource "aws_appautoscaling_target" "obetivo_escalamiento_ecs" {
     service_namespace  = "ecs"
-    resource_id        = "service/${aws_ecs_cluster.cluster_jeress_servicios.name}/${aws_ecs_service.servicio_jeress.name}"
+    resource_id        = "service/${aws_ecs_cluster.cluster_veterinaria_servicios.name}/${aws_ecs_service.veterinaria_servicio.name}"
     scalable_dimension = "ecs:service:DesiredCount"
     min_capacity       = 1
     max_capacity       = 4
@@ -125,16 +125,16 @@ resource "aws_appautoscaling_policy" "politica_de_autoescalamiento_ecs" {
     }
 }
 
-resource "aws_lb" "jeress_load_balancer" {
-    name               = "jeress-alb"
+resource "aws_lb" "veterinaria_load_balancer" {
+    name               = "veterinaria-alb"
     internal           = false
     load_balancer_type = "application"
     subnets            = data.aws_subnets.sub_redes_por_defecto.ids
     security_groups    = [data.aws_security_group.grupo_seguridad_por_defecto.id]
 }
 
-resource "aws_lb_target_group" "tg_jeress" {
-    name     = "tg-jeress"
+resource "aws_lb_target_group" "veterinaria_target_group" {
+    name     = "veterinaria-tg"
     port     = 8080
     protocol = "HTTP"
     vpc_id   = data.aws_vpc.vpc_por_defecto.id
@@ -151,12 +151,12 @@ resource "aws_lb_target_group" "tg_jeress" {
 }
 
 resource "aws_lb_listener" "http_listener" {
-    load_balancer_arn = aws_lb.jeress_load_balancer.arn
+    load_balancer_arn = aws_lb.veterinaria_load_balancer.arn
     port              = 80
     protocol          = "HTTP"
 
     default_action {
         type             = "forward"
-        target_group_arn = aws_lb_target_group.tg_jeress.arn
+        target_group_arn = aws_lb_target_group.veterinaria_target_group.arn
     }
 }
