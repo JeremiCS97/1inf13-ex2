@@ -1,0 +1,16 @@
+{
+  "version": "0",
+  "id": "procesar-paciente-123",
+  "detail-type": "Procesar Paciente",
+  "source": "pe.com.veterinaria",
+  "account": "123456789012",
+  "time": "2025-07-11T10:00:00Z",
+  "region": "us-east-1",
+  "resources": [],
+  "detail": {
+    "pacienteId": 1,
+    "accion": "actualizar_estado",
+    "nuevoEstado": "En tratamiento",
+    "observaciones": "Paciente iniciando tratamiento por infección"
+  }
+}

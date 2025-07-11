@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1752255163707" clover="3.2.0">
+  <project timestamp="1752255163707" name="All files">
+    <metrics statements="20" coveredstatements="20" conditionals="19" coveredconditionals="15" methods="2" coveredmethods="2" elements="41" coveredelements="37" complexity="0" loc="20" ncloc="20" packages="1" files="1" classes="1"/>
+    <file name="index.ts" path="C:\Users\Jeremi\Documents\Maestría\2025-1\1INF13\Examen final\1inf13-ex2\serverless\veterinaria\packages\funciones\crear-cita\src\index.ts">
+      <metrics statements="20" coveredstatements="20" conditionals="19" coveredconditionals="15" methods="2" coveredmethods="2"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="29" count="5" type="stmt"/>
+      <line num="30" count="5" type="stmt"/>
+      <line num="32" count="5" type="cond" truecount="1" falsecount="0"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
+      <line num="37" count="4" type="stmt"/>
+      <line num="40" count="4" type="stmt"/>
+      <line num="41" count="4" type="cond" truecount="5" falsecount="0"/>
+      <line num="42" count="1" type="stmt"/>
+      <line num="43" count="1" type="stmt"/>
+      <line num="46" count="3" type="stmt"/>
+      <line num="48" count="3" type="stmt"/>
+      <line num="61" count="2" type="cond" truecount="1" falsecount="0"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="65" count="1" type="stmt"/>
+      <line num="66" count="1" type="stmt"/>
+      <line num="75" count="1" type="stmt"/>
+      <line num="78" count="2" type="stmt"/>
+      <line num="82" count="2" type="stmt"/>
+    </file>
+  </project>
+</coverage>

@@ -1,0 +1,16 @@
+{
+  "version": "0",
+  "id": "ejemplo-cita-veterinaria-001",
+  "detail-type": "Nueva Cita Solicitada",
+  "source": "veterinaria.sistema",
+  "account": "123456789012",
+  "time": "2025-07-11T14:30:00Z",
+  "region": "us-east-1",
+  "resources": [],
+  "detail": {
+    "pacienteId": 1,
+    "medicoId": 2,
+    "motivo": "Consulta de seguimiento post-cirugía",
+    "fecha": "2025-07-15"
+  }
+}
