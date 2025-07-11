@@ -17,7 +17,7 @@ public class Paciente {
 
     @ManyToOne
     @JoinColumn(name = "idTutor")
-    @JsonBackReference("tutor-paciente")
+    @JsonBackReference
     private Tutor tutor;
 
     @Column(name = "nombre")
@@ -36,6 +36,6 @@ public class Paciente {
     private String estado;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference("paciente-cita")
+    @JsonManagedReference
     private List<CitaMedica> citasMedicas;
 }
