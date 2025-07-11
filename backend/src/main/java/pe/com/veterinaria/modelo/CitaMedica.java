@@ -16,7 +16,7 @@ public class CitaMedica {
 
     @ManyToOne
     @JoinColumn(name = "idPaciente")
-    @JsonBackReference("paciente-cita")
+    @JsonManagedReference("paciente-cita")
     private Paciente paciente;
 
     @ManyToOne
