@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "veterinaria-api-collection",
+		"name": "Sistema Veterinario API",
+		"description": "Colección completa de APIs para el sistema veterinario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": ["{{base_url}}"],
+							"path": [""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Tutores",
+			"item": [
+				{
+					"name": "Listar todos los tutores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tutores",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tutores"]
+						}
+					}
+				},
+				{
+					"name": "Obtener tutor por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tutores/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tutores", "1"]
+						}
+					}
+				},
+				{
+					"name": "Obtener tutor por DNI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tutores/dni/12345678",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tutores", "dni", "12345678"]
+						}
+					}
+				},
+				{
+					"name": "Crear nuevo tutor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": \"87654321\",\n    \"nombre\": \"Juan Pérez Nuevo\",\n    \"direccion\": \"Av. Nueva 123, Lima\",\n    \"telefono\": \"987654321\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tutores",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tutores"]
+						}
+					}
+				},
+				{
+					"name": "Actualizar tutor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": \"12345678\",\n    \"nombre\": \"María García López Actualizada\",\n    \"direccion\": \"Av. Los Olivos 123, San Isidro\",\n    \"telefono\": \"987654321\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tutores/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tutores", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar tutor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/tutores/11",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tutores", "11"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Médicos",
+			"item": [
+				{
+					"name": "Listar todos los médicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/medicos",
+							"host": ["{{base_url}}"],
+							"path": ["api", "medicos"]
+						}
+					}
+				},
+				{
+					"name": "Obtener médico por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/medicos/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "medicos", "1"]
+						}
+					}
+				},
+				{
+					"name": "Obtener médico por DNI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/medicos/dni/11111111",
+							"host": ["{{base_url}}"],
+							"path": ["api", "medicos", "dni", "11111111"]
+						}
+					}
+				},
+				{
+					"name": "Crear nuevo médico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": \"12121212\",\n    \"nombre\": \"Dr. Nuevo Veterinario\",\n    \"especialidad\": \"Medicina General\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/medicos",
+							"host": ["{{base_url}}"],
+							"path": ["api", "medicos"]
+						}
+					}
+				},
+				{
+					"name": "Actualizar médico",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": \"11111111\",\n    \"nombre\": \"Dr. Juan Carlos Mendoza Actualizado\",\n    \"especialidad\": \"Medicina General Veterinaria\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/medicos/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "medicos", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar médico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/medicos/10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "medicos", "10"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Pacientes",
+			"item": [
+				{
+					"name": "Listar todos los pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes"]
+						}
+					}
+				},
+				{
+					"name": "Obtener paciente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "1"]
+						}
+					}
+				},
+				{
+					"name": "Listar pacientes por tutor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/tutor/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "tutor", "1"]
+						}
+					}
+				},
+				{
+					"name": "Listar pacientes por especie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/especie/Perro",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "especie", "Perro"]
+						}
+					}
+				},
+				{
+					"name": "Listar pacientes por estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/estado/Saludable",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "estado", "Saludable"]
+						}
+					}
+				},
+				{
+					"name": "Buscar pacientes por nombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/buscar?nombre=Max",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "buscar"],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Max"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Listar pacientes por raza",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/raza/Labrador",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "raza", "Labrador"]
+						}
+					}
+				},
+				{
+					"name": "Listar pacientes por rango de edad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/edad?min=1&max=3",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "edad"],
+							"query": [
+								{
+									"key": "min",
+									"value": "1"
+								},
+								{
+									"key": "max",
+									"value": "3"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Crear nuevo paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idTutor\": 1,\n    \"nombre\": \"Nuevo Paciente\",\n    \"especie\": \"Perro\",\n    \"raza\": \"Mestizo\",\n    \"edad\": 2,\n    \"estado\": \"Saludable\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pacientes",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes"]
+						}
+					}
+				},
+				{
+					"name": "Actualizar paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idTutor\": 1,\n    \"nombre\": \"Max Actualizado\",\n    \"especie\": \"Perro\",\n    \"raza\": \"Labrador\",\n    \"edad\": 4,\n    \"estado\": \"Saludable\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pacientes/15",
+							"host": ["{{base_url}}"],
+							"path": ["api", "pacientes", "15"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Citas Médicas",
+			"item": [
+				{
+					"name": "Listar todas las citas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas"]
+						}
+					}
+				},
+				{
+					"name": "Obtener cita por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "1"]
+						}
+					}
+				},
+				{
+					"name": "Listar citas por paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/paciente/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "paciente", "1"]
+						}
+					}
+				},
+				{
+					"name": "Listar citas por médico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/medico/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "medico", "1"]
+						}
+					}
+				},
+				{
+					"name": "Listar citas por fecha",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/fecha/2025-01-15",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "fecha", "2025-01-15"]
+						}
+					}
+				},
+				{
+					"name": "Listar citas por rango de fechas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/fechas?inicio=2025-01-15&fin=2025-01-31",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "fechas"],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "2025-01-15"
+								},
+								{
+									"key": "fin",
+									"value": "2025-01-31"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Listar citas futuras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/futuras",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "futuras"]
+						}
+					}
+				},
+				{
+					"name": "Listar citas pasadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/pasadas",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "pasadas"]
+						}
+					}
+				},
+				{
+					"name": "Buscar citas por motivo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/buscar?motivo=vacunación",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "buscar"],
+							"query": [
+								{
+									"key": "motivo",
+									"value": "vacunación"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Crear nueva cita",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idPaciente\": 1,\n    \"idMedico\": 1,\n    \"motivo\": \"Consulta de rutina nueva\",\n    \"fecha\": \"2025-03-15\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/citas",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas"]
+						}
+					}
+				},
+				{
+					"name": "Actualizar cita",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idPaciente\": 1,\n    \"idMedico\": 1,\n    \"motivo\": \"Consulta de rutina y vacunación anual - ACTUALIZADA\",\n    \"fecha\": \"2025-01-15\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/citas/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar cita",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/citas/20",
+							"host": ["{{base_url}}"],
+							"path": ["api", "citas", "20"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

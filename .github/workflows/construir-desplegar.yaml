@@ -29,6 +29,17 @@ jobs:
       - name: Verificar las credenciales
         run: aws sts get-caller-identity
 
+      - name: Configurar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Descargar Maven Wrapper JAR
+        run: |
+          mkdir -p backend/.mvn/wrapper
+          curl -o backend/.mvn/wrapper/maven-wrapper.jar https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar
+
       - name: Dar permisos de ejecución a mvnw
         run: chmod +x ./mvnw
         working-directory: backend
