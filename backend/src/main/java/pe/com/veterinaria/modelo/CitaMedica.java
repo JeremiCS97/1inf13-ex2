@@ -17,12 +17,12 @@ public class CitaMedica {
 
     @ManyToOne
     @JoinColumn(name = "idPaciente")
-    @JsonBackReference("paciente-cita")
+    @JsonBackReference
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "idMedico")
-    @JsonBackReference("medico-cita")
+    @JsonBackReference
     private Medico medico;
 
     @Column(name = "motivo")
