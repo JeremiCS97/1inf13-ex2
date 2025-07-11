@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "tutor")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

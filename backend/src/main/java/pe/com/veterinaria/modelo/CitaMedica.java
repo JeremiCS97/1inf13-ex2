@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "citamedica")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CitaMedica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
