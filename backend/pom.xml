@@ -8,11 +8,11 @@
 		<version>3.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>pe.com.jeress</groupId>
-	<artifactId>jeressapp</artifactId>
+	<groupId>pe.com.veterinaria</groupId>
+	<artifactId>veterinaria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jeressapp</name>
-	<description>Demo project para una Tienda Virtual</description>
+	<name>veterinaria</name>
+	<description>Demo project para una Veterinaria</description>
 	<url/>
 	<licenses>
 		<license/>

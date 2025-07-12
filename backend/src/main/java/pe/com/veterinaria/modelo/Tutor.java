@@ -1,6 +1,8 @@
 package pe.com.veterinaria.modelo;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,6 +30,7 @@ public class Tutor {
     private String telefono;
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonIgnore
+    //@JsonManagedReference
     private List<Paciente> pacientes;
 }
